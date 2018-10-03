@@ -1,0 +1,53 @@
+<%boardID = @board.id%>
+<h3>Board ID: <%=boardID%></h3>
+<h3>Name: <%=@board.user.name%></h3>
+
+
+<%= form_for Post.new do |f| %>
+
+  <%= f.text_area :content, placeholder: "What's on your mind?", cols: 64, rows: 8 %><br />
+
+
+  <%= f.label "Upload pictures: "%>
+  <%= f.file_field :picture, accept: 'image/png,image/gif,image/jpeg' %><br /><br />
+
+  <%= f.hidden_field :board_id, value: boardID%>
+  <%= f.submit %>
+
+<% end %>
+
+<h1>Posts</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th align="left">Post_id</th>
+      <th align="left">Post_by</th>
+      <th align="left">Content</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <!--% binding.pry %-->
+      <tr>
+        <td align="left"><%= post.id %></td>
+        <td align="left"><%= post.user.name %></td>
+        <td align="left"><%= post.content %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+  <% @posts.each do |post| %>
+    <%=post.user.name%>
+    <%= post.content %>
+  <% end %>
+</div>
+
+<div class = "digg_pagination">
+  <%= will_paginate @posts %>
+</div>  

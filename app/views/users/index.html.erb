@@ -1,0 +1,40 @@
+
+
+<h4>Account: <%= current_user.email %></h4>
+
+<h2>Users</h2>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th align="left">Name</th>
+      <th align="left">Email</th>
+      <th align="center">Board_id</th>
+      <th align="center">Board</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <!--% binding.pry %-->
+      <tr>
+        <td align="left"><%= user.name %></td>
+        <td align="left"><%= user.email %></td>
+        <td align="left"><%= user.board.id %></td>
+        <td align="center"><%= link_to "Board", board_url(user.board.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<div class = "digg_pagination">
+  <%= will_paginate @users %>
+</div>
+
+<br>
+
+<%= button_to "Sign Out", destroy_user_session_path, method: :delete%>
