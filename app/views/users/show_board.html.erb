@@ -1,28 +1,14 @@
 <h3><div style="display:inline-block; color:black padding-left:20px">
   Name: <%=@board.user.name%>
 </div>
-<div style="display:block; float:right; color:black; padding-right:1200px">
-  <% if @board.user.id != current_user.id%>
-    <% if !Friendship.exists?(current_user, @board.user) %> 
-      <%= button_to 'Add Friend', friendships_path(:friend_id => @board.user.id), method: :post%>
-    <% elsif current_user.requested_friends.include?(@board.user) %>
-      <%= button_to 'Accept Friend Request', friendship_path(current_user, :friend_id => @board.user), method: :put %> <%= button_to 'Decline Friend Request', friendship_path(current_user, :friend_id => @board.user), method: :delete %>
-    <% elsif current_user.friends.include?(@board.user) %>
-      <%= button_to 'Un-Friend', friendship_path(current_user, :friend_id => @board.user), method: :delete %>
-    <% elsif current_user.pending_friends.include?(@board.user) %>
-      <%= button_to 'Cancel Friend Request', friendship_path(current_user, :friend_id => @board.user), method: :delete %>
-    <% end %>
-  <% end %>
-</div>
 </h3>
-</br>
-
 
 <%= form_for Post.new, html: { multipart: true } do |f| %>
 
   <%= f.text_area :content, placeholder: "What's on your mind?", cols: 64, rows: 8 %><br />
 
-  <%= f.label :image %>
+
+  <%= f.label "Upload images: "%>
   <%= f.file_field :image %><br /><br />
 
   <%= f.hidden_field :board_id, value: @board.id%>
@@ -51,7 +37,7 @@
     
     </br></br>
     <%= post.content %> </br>
-    <%= image_tag(post.image.url, alt: 'Image') if post.image? %>
+    <%= post.image.url %> </br>
 
     <%= form_for Comment.new do |f| %>
 
@@ -100,7 +86,3 @@
   <%= will_paginate @posts %>
 </div>  
 
-
-
-
-<!--네비게이션메뉴 - All users (Search User), Friends, Sign Out--> 

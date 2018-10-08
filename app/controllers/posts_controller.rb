@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
 
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
+	before_action :set_board, except: :create
 
 	def index
 		#@posts = Post.all.paginate(page: params[:page], per_page: 10)
@@ -28,7 +29,7 @@ class PostsController < ApplicationController
 
 	def update
 		if @post.update(post_params)
-	        redirect_to @board
+	        redirect_to board_path(@board)
     	else
       		render :edit
       	end
@@ -36,7 +37,7 @@ class PostsController < ApplicationController
 
 	def destroy
 		if @post.destroy
-			redirect_to @board
+			redirect_to board_path(@board)
 		else
 			render :destroy
 		end
@@ -48,8 +49,12 @@ private
     	@post = Post.find(params[:id])
     end
 
+    def set_board
+    	@board = Board.where(id: @post.board_id).first
+    end
+
 	def post_params
-		params.require(:post).permit(:content,:board_id,:user_id) #보호를 위해
+		params.require(:post).permit(:content,:board_id,:user_id, :image) #보호를 위해
     end
 
 end

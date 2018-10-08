@@ -1,0 +1,55 @@
+<h3>My Friends</h3>
+<table id = "t01">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Friends</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @friends.each do |friend| %>
+      <!--% binding.pry %-->
+      <tr>
+        <td><%= link_to friend.name, board_url(friend.board.id) %></td>
+        <td><%= friend.email %></td>
+        <td>
+          <%= button_to 'Un-Friend', friendship_path(current_user, :friend_id => friend.id), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+</br>
+
+<h3> Friend Requests </h3>
+
+<table id = "t01">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Friends</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <!--% binding.pry %-->
+      <tr>
+        <% if user.id != current_user.id%>
+            <% if current_user.requested_friends.include?(user) %>
+              <td><%= link_to user.name, board_url(user.board.id) %></td>
+              <td><%= user.email %></td>
+              <td><%= button_to 'Accept Friend Request', friendship_path(current_user, :friend_id => user.id), method: :put %> <%= button_to 'Decline Friend Request', friendship_path(current_user, :friend_id => user.id), method: :delete %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

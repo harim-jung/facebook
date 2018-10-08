@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Facebook</title>
+
+    <table id = "t02">
+      <thead>
+        <th style = "width:1500px;text-align:left">Facebook</th>
+        <% if user_signed_in? %>
+          <th style = "width:10%"><%=link_to current_user.name, board_url(current_user.board.id) %></th>
+          <th style = "width:7%"><%=link_to "All Users", users_path %></th>
+          <th style = "width:7%"><%=link_to "Friends", friendships_path %></th>
+          <th style = "width:7%"><%= link_to "Sign Out", destroy_user_session_path, method: :delete%></th>
+
+        <% end %>
+      </thead>
+    </table>
+    </br>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+
   </head>
 
   <body>
+
+   
 
     <% if notice %>
       <p class="alert alert-success"><%= notice %></p>

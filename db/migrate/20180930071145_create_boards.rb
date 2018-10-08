@@ -8,7 +8,3 @@ class CreateBoards < ActiveRecord::Migration[5.2]
 end
 
 
-#comment --> 
-# t.string :content
-# t.belongs_to :post, index: true, foreign_key: true, null: false
-# t.belongs_to :user, index: true, foreign_key: true, null: false

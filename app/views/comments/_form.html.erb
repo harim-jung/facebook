@@ -1,0 +1,11 @@
+<%= form_for @comment do |f| %>
+
+  <%= f.text_area :content, cols: 64, rows: 2 %>
+  
+  <%= f.hidden_field :post_id, value: @post.id%>
+
+  <%= f.hidden_field :board_id, value: @board.id%>
+
+  <%= f.submit %>
+
+<% end %>

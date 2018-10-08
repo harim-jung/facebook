@@ -17,6 +17,27 @@
 *{font-family:sans-serif;}
 
 
+table#t01 {
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 700px;
+}
+
+table#t01 th, td {
+    padding: 6px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table#t01 tr:hover {background-color:lightgray;}
+
+table#t02{
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 150%;
+  border-bottom: 1px solid #ddd;
+}
+
 button{
   background:black;
   color:white;
@@ -53,4 +74,16 @@ button:hover:before,button:hover:after{
   width:100%;
   transition:800ms ease all;
 }
+
+div.center {
+    text-align: center;
+}
+
+div.left {
+    text-align: left;
+}
+
+div.right {
+    text-align: right;
+} 
 

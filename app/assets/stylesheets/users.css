@@ -45,17 +45,4 @@
   *:first-child + html .digg_pagination {
     overflow: hidden; }
 
-table {
-    table-layout: fixed;
-    border-collapse: collapse;
-    width: 900px;
-}
-
-th, td {
-    padding: 6px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-tr:hover {background-color:lightgray;}
 
